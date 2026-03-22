@@ -1,0 +1,225 @@
+.purchase-history-container {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.purchase-history-container h2 {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.purchase-history-hint {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.bills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.purchase-bill-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.purchase-bill-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.supplier-bill-no {
+  font-weight: 500;
+  color: #555;
+}
+
+.purchase-bill-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.bill-total-pill {
+  background: #0f172a;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.purchase-lines-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #fff;
+}
+
+.purchase-lines-table th,
+.purchase-lines-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.purchase-lines-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.purchase-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.purchase-table th,
+.purchase-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.purchase-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.status-paid {
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.status-due {
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
+
+.purchase-summary-panel {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.purchase-summary-grand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.purchase-summary-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.purchase-summary-value {
+  font-size: 1.5rem;
+  color: #0f172a;
+}
+
+.purchase-summary-by-title {
+  font-size: 15px;
+  margin: 0 0 10px;
+  color: #334155;
+}
+
+.purchase-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.purchase-summary-table th,
+.purchase-summary-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.purchase-summary-table th.num,
+.purchase-summary-table td.num {
+  text-align: right;
+}
+
+.purchase-edit-bill-link,
+.purchase-attachment-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.purchase-edit-bill-link:hover,
+.purchase-attachment-link:hover {
+  background: #eff6ff;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .purchase-table {
+    font-size: 12px;
+  }
+  
+  .purchase-table th,
+  .purchase-table td {
+    padding: 8px;
+  }
+}

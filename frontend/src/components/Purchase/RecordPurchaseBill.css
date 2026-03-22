@@ -1,0 +1,253 @@
+.record-purchase-container {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+}
+
+.record-purchase-container h2 {
+  margin: 0 0 8px;
+  color: #0f172a;
+}
+
+.record-purchase-intro {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.record-purchase-form .bill-header-fields {
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.lines-heading {
+  font-size: 1rem;
+  margin: 0 0 12px;
+  color: #334155;
+}
+
+.lines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.line-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+}
+
+.line-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.remove-line-btn {
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.remove-line-btn:hover {
+  text-decoration: underline;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.line-preview {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.add-line-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 12px;
+  background: #f1f5f9;
+  border: 1px dashed #94a3b8;
+  border-radius: 8px;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-line-btn:hover {
+  background: #e2e8f0;
+}
+
+.submit-bill-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submit-bill-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.submit-bill-btn:not(:disabled):hover {
+  filter: brightness(1.05);
+}
+
+.purchase-draft-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+}
+
+.purchase-draft-hint {
+  font-size: 13px;
+  color: #166534;
+  line-height: 1.4;
+  flex: 1;
+  min-width: 200px;
+}
+
+.purchase-discard-draft-btn {
+  border: 1px solid #86efac;
+  background: #fff;
+  color: #14532d;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.purchase-discard-draft-btn:hover {
+  background: #dcfce7;
+}
+
+.bill-attachment-group input[type='file'] {
+  font-size: 14px;
+}
+
+.attachment-status {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+.attachment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.attachment-actions a {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.new-supplier-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.new-supplier-modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.new-supplier-modal h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+}
+
+.new-supplier-modal input[type='text'] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.new-supplier-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.new-supplier-actions .submit-bill-btn {
+  margin-top: 0;
+  width: auto;
+  flex: 1;
+  min-width: 120px;
+}

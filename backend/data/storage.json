@@ -1,0 +1,285 @@
+{
+  "products": [
+    {
+      "product_code": "Two_kids_260",
+      "brand_name": "Two_kids",
+      "article_number": "260",
+      "gender": "boy",
+      "category": "regular",
+      "cost_price": 260,
+      "sell_price": 389,
+      "stock_qty": 0,
+      "created_at": "2026-03-22T05:38:47.505Z"
+    },
+    {
+      "product_code": "two_kids_207",
+      "brand_name": "two_kids",
+      "article_number": "207",
+      "gender": "boy",
+      "category": "regular",
+      "cost_price": 207,
+      "sell_price": 380,
+      "stock_qty": 3,
+      "created_at": "2026-03-22T05:38:47.509Z"
+    },
+    {
+      "product_code": "paris_129",
+      "brand_name": "paris",
+      "article_number": "129",
+      "gender": "boy",
+      "category": "regular",
+      "cost_price": 129,
+      "sell_price": 280,
+      "stock_qty": 3,
+      "created_at": "2026-03-22T05:38:47.514Z"
+    },
+    {
+      "product_code": "paris_full_157",
+      "brand_name": "paris_full",
+      "article_number": "157",
+      "gender": "boy",
+      "category": "regular",
+      "cost_price": 157,
+      "sell_price": 319.99,
+      "stock_qty": 30,
+      "created_at": "2026-03-22T05:38:47.516Z"
+    },
+    {
+      "product_code": "Rupa_80",
+      "brand_name": "Rupa",
+      "article_number": "80",
+      "gender": "boy",
+      "category": "shorts",
+      "cost_price": 80,
+      "sell_price": 112,
+      "stock_qty": 10,
+      "created_at": "2026-03-22T05:38:47.519Z"
+    },
+    {
+      "product_code": "sweet heart_121",
+      "brand_name": "sweet heart",
+      "article_number": "121",
+      "gender": "girl",
+      "category": "regular",
+      "cost_price": 500,
+      "sell_price": 700,
+      "stock_qty": 0,
+      "created_at": "2026-03-22T05:40:22.856Z"
+    }
+  ],
+  "purchases": [
+    {
+      "id": 1,
+      "product_code": "Two_kids_260",
+      "supplier_name": "Sindh Sales",
+      "supplier_bill_no": "101",
+      "batch_id": 1774157927505,
+      "quantity": 3,
+      "cost_price": 260,
+      "total_amount": 780,
+      "purchase_date": "2025-12-01",
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
+      "created_at": "2026-03-22T05:38:47.507Z",
+      "bill_attachment": "/uploads/purchase-bills/1774157736758-WIN_20260217_15_54_50_Pro.jpg"
+    },
+    {
+      "id": 2,
+      "product_code": "two_kids_207",
+      "supplier_name": "Sindh Sales",
+      "supplier_bill_no": "101",
+      "batch_id": 1774157927505,
+      "quantity": 3,
+      "cost_price": 207,
+      "total_amount": 621,
+      "purchase_date": "2025-12-01",
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
+      "created_at": "2026-03-22T05:38:47.511Z",
+      "bill_attachment": "/uploads/purchase-bills/1774157736758-WIN_20260217_15_54_50_Pro.jpg"
+    },
+    {
+      "id": 3,
+      "product_code": "paris_129",
+      "supplier_name": "Sindh Sales",
+      "supplier_bill_no": "101",
+      "batch_id": 1774157927505,
+      "quantity": 12,
+      "cost_price": 129,
+      "total_amount": 1548,
+      "purchase_date": "2025-12-01",
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
+      "created_at": "2026-03-22T05:38:47.515Z",
+      "bill_attachment": "/uploads/purchase-bills/1774157736758-WIN_20260217_15_54_50_Pro.jpg"
+    },
+    {
+      "id": 4,
+      "product_code": "paris_full_157",
+      "supplier_name": "Sindh Sales",
+      "supplier_bill_no": "101",
+      "batch_id": 1774157927505,
+      "quantity": 35,
+      "cost_price": 157,
+      "total_amount": 5495,
+      "purchase_date": "2025-12-01",
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
+      "created_at": "2026-03-22T05:38:47.518Z",
+      "bill_attachment": "/uploads/purchase-bills/1774157736758-WIN_20260217_15_54_50_Pro.jpg"
+    },
+    {
+      "id": 5,
+      "product_code": "Rupa_80",
+      "supplier_name": "Sindh Sales",
+      "supplier_bill_no": "101",
+      "batch_id": 1774157927505,
+      "quantity": 10,
+      "cost_price": 80,
+      "total_amount": 800,
+      "purchase_date": "2025-12-01",
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
+      "created_at": "2026-03-22T05:38:47.521Z",
+      "bill_attachment": "/uploads/purchase-bills/1774157736758-WIN_20260217_15_54_50_Pro.jpg"
+    },
+    {
+      "id": 6,
+      "product_code": "paris_129",
+      "supplier_name": "Rajshree",
+      "supplier_bill_no": "201",
+      "batch_id": 1774158022852,
+      "quantity": 11,
+      "cost_price": 129,
+      "total_amount": 1419,
+      "purchase_date": "2026-03-22",
+      "payment_status": "DUE",
+      "paid_date": null,
+      "created_at": "2026-03-22T05:40:22.854Z",
+      "bill_attachment": "/uploads/purchase-bills/1774157981051-WIN_20260312_14_45_22_Pro.jpg"
+    },
+    {
+      "id": 7,
+      "product_code": "sweet heart_121",
+      "supplier_name": "Rajshree",
+      "supplier_bill_no": "201",
+      "batch_id": 1774158022852,
+      "quantity": 3,
+      "cost_price": 500,
+      "total_amount": 1500,
+      "purchase_date": "2026-03-22",
+      "payment_status": "DUE",
+      "paid_date": null,
+      "created_at": "2026-03-22T05:40:22.858Z",
+      "bill_attachment": "/uploads/purchase-bills/1774157981051-WIN_20260312_14_45_22_Pro.jpg"
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "customer_name": "akshat",
+      "phone": "9425718644",
+      "salesperson_id": "sales-1",
+      "salesperson_name": "Salesman 1",
+      "total_amount": 2299.95,
+      "discount": 0,
+      "discount_percentage": 0,
+      "final_amount": 2299.95,
+      "sale_date": "2026-03-22",
+      "created_at": "2026-03-22T05:43:49.766Z"
+    },
+    {
+      "id": 2,
+      "customer_name": "millind",
+      "phone": "123456789",
+      "salesperson_id": "sales-1",
+      "salesperson_name": "Salesman 1",
+      "total_amount": 1167,
+      "discount": 116.7,
+      "discount_percentage": 10,
+      "final_amount": 1050.3,
+      "sale_date": "2026-03-22",
+      "created_at": "2026-03-22T05:44:53.388Z"
+    },
+    {
+      "id": 3,
+      "customer_name": "millind",
+      "phone": "91293812",
+      "salesperson_id": "sales-1",
+      "salesperson_name": "Salesman 1",
+      "total_amount": 5600,
+      "discount": 0,
+      "discount_percentage": 0,
+      "final_amount": 5600,
+      "sale_date": "2026-03-22",
+      "created_at": "2026-03-22T05:46:05.405Z"
+    },
+    {
+      "id": 4,
+      "customer_name": "akshat",
+      "phone": "23456789",
+      "salesperson_id": "sales-2",
+      "salesperson_name": "Salesman 2",
+      "total_amount": 1400,
+      "discount": 210,
+      "discount_percentage": 15,
+      "final_amount": 1190,
+      "sale_date": "2026-03-22",
+      "created_at": "2026-03-22T05:48:08.833Z"
+    }
+  ],
+  "sales_items": [
+    {
+      "id": 1,
+      "sale_id": 1,
+      "product_code": "paris_full_157",
+      "quantity": 5,
+      "sell_price": 319.99,
+      "total": 1599.95
+    },
+    {
+      "id": 2,
+      "sale_id": 1,
+      "product_code": "sweet heart_121",
+      "quantity": 1,
+      "sell_price": 700,
+      "total": 700
+    },
+    {
+      "id": 3,
+      "sale_id": 2,
+      "product_code": "Two_kids_260",
+      "quantity": 3,
+      "sell_price": 389,
+      "total": 1167
+    },
+    {
+      "id": 4,
+      "sale_id": 3,
+      "product_code": "paris_129",
+      "quantity": 20,
+      "sell_price": 280,
+      "total": 5600
+    },
+    {
+      "id": 5,
+      "sale_id": 4,
+      "product_code": "sweet heart_121",
+      "quantity": 2,
+      "sell_price": 700,
+      "total": 1400
+    }
+  ],
+  "suppliers": [
+    {
+      "id": 1,
+      "name": "Sindh Sales",
+      "created_at": "2026-03-22T05:35:03.035Z"
+    },
+    {
+      "id": 2,
+      "name": "Rajshree",
+      "created_at": "2026-03-22T05:39:30.972Z"
+    }
+  ]
+}

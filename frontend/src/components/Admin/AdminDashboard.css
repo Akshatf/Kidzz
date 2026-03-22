@@ -1,0 +1,359 @@
+.admin-dashboard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-dashboard h2 {
+  font-size: 24px;
+  color: #0f172a;
+  margin-bottom: 20px;
+  border-left: 4px solid #3b82f6;
+  padding-left: 16px;
+}
+
+.admin-cards {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.admin-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.admin-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.admin-card span {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-card strong {
+  font-size: 28px;
+  color: #1e3a8a;
+  margin-top: 8px;
+  display: block;
+}
+
+.admin-dashboard h3 {
+  font-size: 18px;
+  color: #0f172a;
+  margin: 24px 0 16px 0;
+  font-weight: 600;
+}
+
+.admin-sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.admin-sales-table th {
+  background: #f8fafc;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #0f172a;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-sales-table td {
+  border-bottom: 1px solid #f1f5f9;
+  padding: 12px;
+  color: #334155;
+}
+
+.admin-sales-table tr:hover {
+  background: #f8fafc;
+}
+
+.admin-sales-hint {
+  color: #64748b;
+  font-size: 14px;
+  margin: -8px 0 16px;
+  line-height: 1.45;
+}
+
+.admin-sp-row {
+  cursor: pointer;
+  outline: none;
+}
+
+.admin-sp-row:focus-visible {
+  box-shadow: inset 0 0 0 2px #3b82f6;
+}
+
+.admin-sp-row-open {
+  background: #eff6ff !important;
+}
+
+.admin-sp-username {
+  color: #64748b;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.admin-sp-chevron {
+  width: 40px;
+  text-align: center;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.admin-bills-row td {
+  padding: 0 !important;
+  border-bottom: 2px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.admin-no-bills {
+  padding: 20px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.admin-bills-nested {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 14px;
+}
+
+.admin-bills-nested th,
+.admin-bills-nested td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-bills-nested th {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #475569;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-bills-nested .num {
+  text-align: right;
+}
+
+.admin-bills-nested .mono {
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+}
+
+.admin-view-bill-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-view-bill-btn:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.admin-view-bill-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-bill-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+
+.admin-bill-modal {
+  margin-top: 24px;
+  margin-bottom: 48px;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .admin-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .admin-card strong {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-period-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.admin-period-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-period-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-period-chip {
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #334155;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-period-chip:hover {
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.admin-period-chip.active {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+
+.admin-amounts-privacy {
+  margin-bottom: 16px;
+}
+
+.admin-show-amounts-btn,
+.admin-hide-amounts-btn {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-hide-amounts-btn {
+  background: #fef3c7;
+  border-color: #fcd34d;
+  color: #92400e;
+}
+
+.admin-reveal-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-reveal-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.admin-reveal-form input[type='password'] {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.admin-reveal-form button[type='submit'] {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-reveal-cancel {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-bill-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-bill-tool-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-bill-tool-btn.ghost {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.admin-bill-modal-wide {
+  max-width: min(1100px, 100%);
+  width: 100%;
+}
