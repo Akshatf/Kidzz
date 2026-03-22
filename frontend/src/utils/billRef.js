@@ -11,5 +11,5 @@ export function formatBillRef(saleDate, id) {
   const dd = String(d.getDate()).padStart(2, '0');
   const mm = String(d.getMonth() + 1).padStart(2, '0');
   const yyyy = d.getFullYear();
-  return `${dd}${mm}${yyyy}-${String(id).padStart(4, '0')}`;
+  return `${dd}${mm}${yyyy}${String(id).padStart(4, '0')}`;
 }

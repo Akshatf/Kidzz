@@ -140,6 +140,17 @@ exports.getPurchases = (req, res) => {
     }
 };
 
+// Get all unique suppliers
+exports.getSuppliers = (req, res) => {
+    try {
+        const purchases = storage.getPurchases();
+        const uniqueSuppliers = [...new Set(purchases.map(p => p.supplier_name).filter(name => name))].sort();
+        res.json({ suppliers: uniqueSuppliers });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 // Get due payments summary (grouped by supplier, then by purchase bill / batch)
 exports.getDuePayments = (req, res) => {
     try {

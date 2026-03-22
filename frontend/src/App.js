@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Layout/Navbar';
-import AddProduct from './components/Products/AddProduct';
+// import AddProduct from './components/Products/AddProduct';
 import CreateSale from './components/sales/CreateSale';
 import PurchaseHistory from './components/Purchase/PurchaseHistory';
 import RecordPurchaseBill from './components/Purchase/RecordPurchaseBill';
@@ -87,10 +87,10 @@ function App() {
               }
             />
             <Route path="/sell" element={<CreateSale currentUser={currentUser} />} />
-            <Route
+            {/* <Route
               path="/add-product"
               element={currentUser?.role === 'admin' ? <AddProduct /> : <Navigate to="/" replace />}
-            />
+            /> */}
             <Route
               path="/purchases"
               element={currentUser?.role === 'admin' ? <PurchaseHistory /> : <Navigate to="/" replace />}

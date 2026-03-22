@@ -8,7 +8,7 @@
       "category": "regular",
       "cost_price": 260,
       "sell_price": 389,
-      "stock_qty": 0,
+      "stock_qty": 3,
       "created_at": "2026-03-22T05:38:47.505Z"
     },
     {
@@ -30,7 +30,7 @@
       "category": "regular",
       "cost_price": 129,
       "sell_price": 280,
-      "stock_qty": 3,
+      "stock_qty": 87,
       "created_at": "2026-03-22T05:38:47.514Z"
     },
     {
@@ -41,7 +41,7 @@
       "category": "regular",
       "cost_price": 157,
       "sell_price": 319.99,
-      "stock_qty": 30,
+      "stock_qty": 35,
       "created_at": "2026-03-22T05:38:47.516Z"
     },
     {
@@ -63,7 +63,7 @@
       "category": "regular",
       "cost_price": 500,
       "sell_price": 700,
-      "stock_qty": 0,
+      "stock_qty": 3,
       "created_at": "2026-03-22T05:40:22.856Z"
     }
   ],
@@ -153,8 +153,8 @@
       "cost_price": 129,
       "total_amount": 1419,
       "purchase_date": "2026-03-22",
-      "payment_status": "DUE",
-      "paid_date": null,
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
       "created_at": "2026-03-22T05:40:22.854Z",
       "bill_attachment": "/uploads/purchase-bills/1774157981051-WIN_20260312_14_45_22_Pro.jpg"
     },
@@ -168,106 +168,51 @@
       "cost_price": 500,
       "total_amount": 1500,
       "purchase_date": "2026-03-22",
-      "payment_status": "DUE",
-      "paid_date": null,
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
       "created_at": "2026-03-22T05:40:22.858Z",
       "bill_attachment": "/uploads/purchase-bills/1774157981051-WIN_20260312_14_45_22_Pro.jpg"
+    },
+    {
+      "id": 8,
+      "product_code": "paris_129",
+      "supplier_name": "Daga",
+      "supplier_bill_no": "301",
+      "batch_id": 1774170258402,
+      "quantity": 66,
+      "cost_price": 129,
+      "total_amount": 8514,
+      "purchase_date": "2026-03-22",
+      "payment_status": "PAID",
+      "paid_date": "2026-03-22",
+      "created_at": "2026-03-22T09:04:18.405Z",
+      "bill_attachment": "/uploads/purchase-bills/1774170235799-WIN_20260217_15_55_06_Pro.jpg"
     }
   ],
   "sales": [
     {
       "id": 1,
-      "customer_name": "akshat",
-      "phone": "9425718644",
+      "customer_name": "test",
+      "phone": "",
       "salesperson_id": "sales-1",
       "salesperson_name": "Salesman 1",
-      "total_amount": 2299.95,
+      "total_amount": 560,
       "discount": 0,
       "discount_percentage": 0,
-      "final_amount": 2299.95,
+      "final_amount": 560,
       "sale_date": "2026-03-22",
-      "created_at": "2026-03-22T05:43:49.766Z"
-    },
-    {
-      "id": 2,
-      "customer_name": "millind",
-      "phone": "123456789",
-      "salesperson_id": "sales-1",
-      "salesperson_name": "Salesman 1",
-      "total_amount": 1167,
-      "discount": 116.7,
-      "discount_percentage": 10,
-      "final_amount": 1050.3,
-      "sale_date": "2026-03-22",
-      "created_at": "2026-03-22T05:44:53.388Z"
-    },
-    {
-      "id": 3,
-      "customer_name": "millind",
-      "phone": "91293812",
-      "salesperson_id": "sales-1",
-      "salesperson_name": "Salesman 1",
-      "total_amount": 5600,
-      "discount": 0,
-      "discount_percentage": 0,
-      "final_amount": 5600,
-      "sale_date": "2026-03-22",
-      "created_at": "2026-03-22T05:46:05.405Z"
-    },
-    {
-      "id": 4,
-      "customer_name": "akshat",
-      "phone": "23456789",
-      "salesperson_id": "sales-2",
-      "salesperson_name": "Salesman 2",
-      "total_amount": 1400,
-      "discount": 210,
-      "discount_percentage": 15,
-      "final_amount": 1190,
-      "sale_date": "2026-03-22",
-      "created_at": "2026-03-22T05:48:08.833Z"
+      "payment_mode": "cash",
+      "created_at": "2026-03-22T09:30:58.540Z"
     }
   ],
   "sales_items": [
     {
       "id": 1,
       "sale_id": 1,
-      "product_code": "paris_full_157",
-      "quantity": 5,
-      "sell_price": 319.99,
-      "total": 1599.95
-    },
-    {
-      "id": 2,
-      "sale_id": 1,
-      "product_code": "sweet heart_121",
-      "quantity": 1,
-      "sell_price": 700,
-      "total": 700
-    },
-    {
-      "id": 3,
-      "sale_id": 2,
-      "product_code": "Two_kids_260",
-      "quantity": 3,
-      "sell_price": 389,
-      "total": 1167
-    },
-    {
-      "id": 4,
-      "sale_id": 3,
       "product_code": "paris_129",
-      "quantity": 20,
-      "sell_price": 280,
-      "total": 5600
-    },
-    {
-      "id": 5,
-      "sale_id": 4,
-      "product_code": "sweet heart_121",
       "quantity": 2,
-      "sell_price": 700,
-      "total": 1400
+      "sell_price": 280,
+      "total": 560
     }
   ],
   "suppliers": [
@@ -280,6 +225,11 @@
       "id": 2,
       "name": "Rajshree",
       "created_at": "2026-03-22T05:39:30.972Z"
+    },
+    {
+      "id": 3,
+      "name": "Daga",
+      "created_at": "2026-03-22T09:03:33.476Z"
     }
   ]
 }

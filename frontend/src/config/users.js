@@ -4,21 +4,21 @@ export const USERS = [
     id: 'admin-1',
     username: 'admin',
     password: 'admin@123',
-    name: 'Administrator',
+    name: 'Admin',
     role: 'admin'
   },
   {
     id: 'sales-1',
     username: 'sales1',
     password: 'sales@123',
-    name: 'Salesman 1',
+    name: 'Sales1',
     role: 'salesman'
   },
   {
     id: 'sales-2',
     username: 'sales2',
     password: 'sales@123',
-    name: 'Salesman 2',
+    name: 'Sales2',
     role: 'salesman'
   }
 ];

@@ -5,6 +5,7 @@ const { uploadPurchaseBill } = require('../middleware/uploadPurchaseBill');
 
 router.get('/summary', purchaseController.getPurchaseSummary);
 router.get('/due', purchaseController.getDuePayments);
+router.get('/suppliers', purchaseController.getSuppliers);
 router.get('/batch/:batch_id', purchaseController.getPurchaseBatch);
 
 router.post('/attachment', (req, res, next) => {

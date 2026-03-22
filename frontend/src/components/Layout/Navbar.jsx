@@ -12,11 +12,11 @@ const Navbar = ({ onLogout, currentUser }) => {
           Shubham kidzz
         </NavLink>
         <ul className="navbar-menu">
-          <li><NavLink to="/">{isAdmin ? 'Dashboard' : 'Sales'}</NavLink></li>
-          {!isAdmin && <li><NavLink to="/sell">Sell Product</NavLink></li>}
-          {isAdmin && <li><NavLink to="/add-product">Add Product</NavLink></li>}
-          {isAdmin && <li><NavLink to="/record-purchase">Purchase bill</NavLink></li>}
-          {isAdmin && <li><NavLink to="/purchases">Purchase History</NavLink></li>}
+          <li><NavLink to="/">{isAdmin ? 'Dashboard' : 'Sell'}</NavLink></li>
+          {/* {!isAdmin && <li><NavLink to="/sell">Sell </NavLink></li>} */}
+          {/* {isAdmin && <li><NavLink to="/add-product">Add Product</NavLink></li>} */}
+          {isAdmin && <li><NavLink to="/record-purchase">Add bill</NavLink></li>}
+          {isAdmin && <li><NavLink to="/purchases">Bills History</NavLink></li>}
           {isAdmin && <li><NavLink to="/due">Due Payments</NavLink></li>}
           <li><NavLink to="/stock-report">Stock Report</NavLink></li>
           <li><NavLink to="/sales-report">Sales Report</NavLink></li>
