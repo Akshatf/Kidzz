@@ -1,7 +1,7 @@
 const USERS = [
     { id: 'admin-1', username: 'admin', password: 'admin@123', role: 'admin', name: 'Admin' },
-    { id: 'sales-1', username: 'sales1', password: 'sales@123', role: 'salesman', name: 'Sales1' },
-    { id: 'sales-2', username: 'sales2', password: 'sales@123', role: 'salesman', name: 'Sales2' }
+    { id: 'akshat', username: 'akshat', password: 'akshat', role: 'sales', name: 'Akshat' },
+    { id: 'anant', username: 'anant', password: 'anant', role: 'sales', name: 'Anant' }
 ];
 
 const getSalespersons = () => USERS.filter((u) => u.role === 'salesman');

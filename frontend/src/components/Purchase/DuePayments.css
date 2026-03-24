@@ -1,59 +1,76 @@
 .due-payments-container {
   background: white;
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
 }
 
 .due-payments-container h2 {
   margin-bottom: 8px;
-  color: #333;
+  color: #0f172a;
+  font-size: 1.8rem;
 }
 
 .due-intro {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 20px;
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
 }
 
 .success-alert {
-  background-color: #d4edda;
-  border: 1px solid #c3e6cb;
-  color: #155724;
-  padding: 12px;
-  border-radius: 4px;
+  background-color: #d1fae5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 16px;
+  border-radius: 10px;
   margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
 }
 
 .supplier-card {
-  background-color: #f9f9f9;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+  border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
+  border: 1px solid #fee2e2;
 }
 
 .supplier-card h3 {
   margin-bottom: 12px;
-  color: #333;
+  color: #991b1b;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .total-due {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  color: #e74c3c;
-  margin-bottom: 16px;
+  color: #dc2626;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  border-left: 4px solid #dc2626;
 }
 
 .purchase-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+  align-items: flex-start;
+  padding: 16px;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+  border: 1px solid #f1f5f9;
 }
 
-.purchase-item:last-child {
-  border-bottom: none;
+.purchase-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .purchase-info {
@@ -62,41 +79,232 @@
 
 .bill-no {
   font-weight: 600;
-  color: #333;
+  color: #0f172a;
+  font-size: 1rem;
+  margin-bottom: 6px;
 }
 
 .purchase-date {
   font-size: 12px;
-  color: #666;
+  color: #64748b;
   margin-top: 4px;
+}
+
+.purchased-by {
+  font-size: 12px;
+  color: #8b5cf6;
+  margin-top: 4px;
+  font-weight: 500;
 }
 
 .bill-amount {
   font-weight: 600;
-  margin-top: 6px;
-  color: #c0392b;
+  margin-top: 8px;
+  color: #dc2626;
+  font-size: 1rem;
 }
 
 .due-lines {
-  margin: 8px 0 0;
-  padding-left: 18px;
+  margin: 12px 0 0;
+  padding-left: 20px;
   font-size: 13px;
-  color: #555;
+  color: #475569;
 }
 
 .due-lines li {
-  margin: 2px 0;
+  margin: 4px 0;
+  font-family: monospace;
 }
 
 .pay-btn {
-  background-color: #27ae60;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  padding: 8px 16px;
+  padding: 10px 24px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+  margin-left: 16px;
 }
 
 .pay-btn:hover {
-  background-color: #229954;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.payment-modal {
+  background: white;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.payment-modal h3 {
+  margin: 0;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border-radius: 16px 16px 0 0;
+  font-size: 1.3rem;
+}
+
+.modal-content {
+  padding: 24px;
+}
+
+.modal-bill-info {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.modal-bill-info p {
+  margin: 8px 0;
+}
+
+.modal-bill-info strong {
+  color: #475569;
+}
+
+.modal-content .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-content .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.modal-content .form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.modal-content .form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.modal-content .form-group small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cancel-btn,
+.confirm-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancel-btn {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.cancel-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.confirm-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .due-payments-container {
+    padding: 16px;
+  }
+
+  .purchase-item {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pay-btn {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .payment-modal {
+    margin: 0 16px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
 }

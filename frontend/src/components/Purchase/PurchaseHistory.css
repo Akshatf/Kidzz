@@ -5,60 +5,70 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
 
+.purchase-history-container h2 {
+  color: #0f172a;
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+}
+
 .purchase-summary-toggle {
   text-align: right;
   margin-bottom: 20px;
 }
 
 .toggle-summary-btn {
-  padding: 8px 16px;
-  background-color: #4CAF50;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  transition: all 0.3s;
 }
 
 .toggle-summary-btn:hover {
-  background-color: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .purchase-summary-panel {
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
 }
 
 .purchase-summary-grand {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 16px;
   background: white;
-  border-radius: 6px;
+  border-radius: 10px;
   margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
 }
 
 .purchase-summary-label {
   font-size: 16px;
   font-weight: 500;
-  color: #666;
+  color: #64748b;
 }
 
 .purchase-summary-value {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
-  color: #4CAF50;
+  color: #10b981;
 }
 
 .purchase-summary-by-title {
-  margin: 0 0 15px 0;
+  margin: 0 0 16px;
   font-size: 18px;
-  color: #333;
+  color: #334155;
+  font-weight: 600;
 }
 
 .purchase-summary-table {
@@ -68,61 +78,68 @@
 
 .purchase-summary-table th,
 .purchase-summary-table td {
-  padding: 10px;
+  padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .purchase-summary-table th {
-  background-color: #f0f0f0;
+  background-color: #f1f5f9;
   font-weight: 600;
+  color: #475569;
 }
 
 .purchase-summary-table .num {
   text-align: right;
+  font-weight: 600;
+  color: #10b981;
 }
 
 .filters-section {
   margin-bottom: 30px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  background: #f8fafc;
+  border-radius: 12px;
   padding: 20px;
+  border: 1px solid #e2e8f0;
 }
 
 .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  margin-bottom: 20px;
   align-items: flex-end;
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  flex: 1;
+  min-width: 150px;
 }
 
 .filter-group label {
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: #64748b;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .filter-group input,
 .filter-group select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
   font-size: 14px;
-  min-width: 150px;
+  transition: all 0.2s;
 }
 
 .filter-group input:focus,
 .filter-group select:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .filter-actions {
@@ -132,209 +149,181 @@
 
 .apply-filters-btn,
 .clear-filters-btn {
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
   transition: all 0.3s;
 }
 
 .apply-filters-btn {
-  background-color: #4CAF50;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
 }
 
 .apply-filters-btn:hover {
-  background-color: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .clear-filters-btn {
-  background-color: #f0f0f0;
-  color: #666;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
 }
 
 .clear-filters-btn:hover {
-  background-color: #e0e0e0;
-}
-
-.time-grouping-tabs {
-  display: flex;
-  gap: 10px;
-  border-top: 1px solid #e0e0e0;
-  padding-top: 20px;
-}
-
-.time-grouping-tabs button {
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s;
-}
-
-.time-grouping-tabs button:hover {
-  background-color: #f0f0f0;
-}
-
-.time-grouping-tabs button.active {
-  background-color: #4CAF50;
-  color: white;
-  border-color: #4CAF50;
-}
-
-.time-period-group {
-  margin-bottom: 40px;
-}
-
-.time-period-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  border-bottom: 2px solid #4CAF50;
-  margin-bottom: 20px;
-}
-
-.time-period-header h3 {
-  margin: 0;
-  font-size: 20px;
-  color: #333;
-}
-
-.time-period-stats {
-  display: flex;
-  gap: 20px;
-}
-
-.bill-count {
-  font-size: 14px;
-  color: #666;
-}
-
-.period-total {
-  font-size: 18px;
-  font-weight: bold;
-  color: #4CAF50;
+  background-color: #e2e8f0;
 }
 
 .bills-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 
 .purchase-bill-wrapper {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s;
+  background: white;
 }
 
 .purchase-bill-card {
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
   background: white;
 }
 
 .purchase-bill-card:hover {
-  background-color: #fafafa;
+  background-color: #fafcff;
+  transform: translateX(4px);
+}
+
+.purchase-bill-card.due-bill {
+  border-left: 4px solid #ef4444;
+}
+
+.purchase-bill-card.paid-bill {
+  border-left: 4px solid #10b981;
 }
 
 .purchase-bill-card-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 20px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .bill-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .supplier-name {
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: #0f172a;
 }
 
 .supplier-bill-no {
   font-size: 13px;
-  color: #999;
+  color: #94a3b8;
+  font-family: monospace;
 }
 
 .purchase-bill-meta {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .purchase-date {
   font-size: 13px;
-  color: #666;
+  color: #64748b;
+}
+
+.payment-date {
+  font-size: 12px;
+  color: #10b981;
+  font-weight: 500;
 }
 
 .status-badge {
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .status-paid {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #d1fae5;
+  color: #065f46;
 }
 
 .status-due {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
 .bill-total {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  color: #4CAF50;
+  color: #10b981;
 }
 
 .expand-icon {
-  font-size: 12px;
-  color: #999;
+  font-size: 14px;
+  color: #94a3b8;
   transition: transform 0.2s;
 }
 
 .bill-summary {
-  padding: 10px 20px 15px;
-  background-color: #fafafa;
-}
-
-.summary-line {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
+  padding: 12px 20px 16px;
+  background-color: #fafcff;
+  border-top: 1px solid #f1f5f9;
   font-size: 13px;
-  color: #666;
 }
 
-.more-items {
-  padding: 5px 0;
+.summary-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.discount-badge {
+  color: #dc2626;
   font-size: 12px;
-  color: #999;
-  font-style: italic;
+  font-weight: 500;
+}
+
+.gst-badge {
+  color: #f59e0b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.payment-info {
+  color: #64748b;
+  font-size: 12px;
+  margin-top: 6px;
 }
 
 .bill-details-expanded {
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e0e0e0;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-top: 1px solid #e2e8f0;
   animation: slideDown 0.3s ease-out;
 }
 
@@ -354,107 +343,176 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .expanded-header h4 {
   margin: 0;
-  font-size: 16px;
-  color: #333;
+  font-size: 18px;
+  color: #0f172a;
+  font-weight: 600;
 }
 
 .expanded-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .edit-bill-link,
 .view-attachment-link {
-  padding: 6px 12px;
+  padding: 8px 16px;
   background-color: white;
-  border: 1px solid #4CAF50;
-  border-radius: 4px;
-  color: #4CAF50;
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  color: #3b82f6;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .edit-bill-link:hover,
 .view-attachment-link:hover {
-  background-color: #4CAF50;
+  background-color: #3b82f6;
   color: white;
+  transform: translateY(-1px);
+}
+
+.bill-info-section {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.info-row {
+  display: flex;
+  padding: 8px 0;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #64748b;
+  min-width: 120px;
+}
+
+.info-value {
+  color: #0f172a;
+  font-weight: 500;
 }
 
 .purchase-lines-table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  border-radius: 6px;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .purchase-lines-table th,
 .purchase-lines-table td {
-  padding: 12px;
+  padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .purchase-lines-table th {
-  background-color: #f0f0f0;
+  background-color: #f8fafc;
   font-weight: 600;
   font-size: 13px;
   text-transform: uppercase;
-  color: #666;
+  color: #64748b;
+  letter-spacing: 0.5px;
 }
 
 .purchase-lines-table tfoot tr {
-  background-color: #f8f9fa;
+  background-color: #fafcff;
+}
+
+.purchase-lines-table tfoot td {
+  font-weight: 600;
+  border-top: 1px solid #e2e8f0;
+}
+
+.calculation-row {
+  font-size: 13px;
+}
+
+.calculation-row.discount {
+  color: #dc2626;
+}
+
+.calculation-row.gst {
+  color: #f59e0b;
+}
+
+.calculation-row.other {
+  color: #8b5cf6;
+}
+
+.calculation-label {
+  text-align: right;
+  font-weight: 500;
+}
+
+.calculation-value {
+  text-align: right;
+  font-weight: 600;
+}
+
+.total-row {
+  background-color: #f8fafc;
+  font-size: 16px;
 }
 
 .total-label {
   text-align: right;
   font-weight: bold;
-  font-size: 14px;
+  color: #0f172a;
 }
 
 .line-total,
 .bill-grand-total {
   font-weight: bold;
-  color: #4CAF50;
+  color: #10b981;
 }
 
 .bill-grand-total {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .loading {
   text-align: center;
   padding: 50px;
   font-size: 18px;
-  color: #666;
+  color: #64748b;
 }
 
 .no-data {
   text-align: center;
   padding: 50px;
   font-size: 16px;
-  color: #999;
-  background: #f8f9fa;
-  border-radius: 8px;
+  color: #94a3b8;
+  background: #f8fafc;
+  border-radius: 12px;
 }
 
 @media (max-width: 768px) {
   .purchase-history-container {
-    padding: 10px;
+    padding: 12px;
   }
 
   .filters {
     flex-direction: column;
   }
 
-  .filter-group input,
-  .filter-group select {
+  .filter-group {
     width: 100%;
   }
 
@@ -466,19 +524,9 @@
     flex: 1;
   }
 
-  .time-grouping-tabs {
-    flex-wrap: wrap;
-  }
-
-  .time-grouping-tabs button {
-    flex: 1;
-    min-width: 80px;
-  }
-
   .purchase-bill-card-head {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
   }
 
   .purchase-bill-meta {
@@ -488,16 +536,26 @@
 
   .purchase-lines-table {
     font-size: 12px;
+    overflow-x: auto;
+    display: block;
   }
 
   .purchase-lines-table th,
   .purchase-lines-table td {
-    padding: 8px;
+    padding: 8px 10px;
   }
 
   .expanded-header {
     flex-direction: column;
-    gap: 10px;
     align-items: flex-start;
+  }
+
+  .expanded-actions {
+    width: 100%;
+  }
+
+  .expanded-actions a {
+    flex: 1;
+    text-align: center;
   }
 }

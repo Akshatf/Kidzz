@@ -16,7 +16,25 @@ function groupPurchasesIntoBills(purchases) {
     .map(([key, lines]) => {
       lines.sort((a, b) => a.id - b.id);
       const first = lines[0];
-      const total = lines.reduce((s, l) => s + (l.total_amount || 0), 0);
+      
+      // Calculate subtotal from line items
+      const subtotal = lines.reduce((s, l) => s + (l.cost_price * l.quantity || 0), 0);
+      
+      // Get discount, GST, other charges from first line (they are same for all lines in a batch)
+      const discountPercent = first.discount_percent || 0;
+      const gstPercent = first.gst_percent || 0;
+      const otherCharges = first.other_charges || 0;
+      
+      // Calculate discount amount
+      const discountAmount = (subtotal * discountPercent) / 100;
+      
+      // Calculate GST amount (on amount after discount)
+      const amountAfterDiscount = subtotal - discountAmount;
+      const gstAmount = (amountAfterDiscount * gstPercent) / 100;
+      
+      // Calculate total
+      const total = subtotal - discountAmount + gstAmount + otherCharges;
+      
       return {
         key,
         batch_id: first.batch_id,
@@ -24,8 +42,18 @@ function groupPurchasesIntoBills(purchases) {
         purchase_date: first.purchase_date,
         supplier_name: first.supplier_name,
         payment_status: first.payment_status,
+        payment_date: first.paid_date,
+        paid_by: first.paid_by,
+        paid_to: first.paid_to,
+        purchased_by: first.purchased_by,
+        discount_percent: discountPercent,
+        discount_amount: discountAmount,
+        gst_percent: gstPercent,
+        gst_amount: gstAmount,
+        other_charges: otherCharges,
+        subtotal: subtotal,
         lines,
-        total,
+        total: total,
         isMulti: lines.length > 1,
         bill_attachment: first.bill_attachment,
       };
@@ -36,82 +64,12 @@ function groupPurchasesIntoBills(purchases) {
     });
 }
 
-function groupBillsByTimePeriod(bills, period) {
-  const groups = new Map();
-  
-  bills.forEach(bill => {
-    const date = new Date(bill.purchase_date);
-    let key;
-    let displayKey;
-    
-    switch(period) {
-      case 'day':
-        key = date.toISOString().split('T')[0];
-        displayKey = new Date(key).toLocaleDateString('en-IN', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        });
-        break;
-      case 'week':
-        const weekStart = new Date(date);
-        weekStart.setDate(date.getDate() - date.getDay());
-        key = weekStart.toISOString().split('T')[0];
-        displayKey = `Week of ${weekStart.toLocaleDateString('en-IN', {
-          day: 'numeric',
-          month: 'short',
-          year: 'numeric'
-        })}`;
-        break;
-      case 'month':
-        key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-        displayKey = date.toLocaleDateString('en-IN', {
-          month: 'long',
-          year: 'numeric'
-        });
-        break;
-      case 'year':
-        key = `${date.getFullYear()}`;
-        displayKey = `Year ${date.getFullYear()}`;
-        break;
-      default:
-        key = 'all';
-        displayKey = 'All Purchases';
-    }
-    
-    if (!groups.has(key)) {
-      groups.set(key, {
-        periodKey: key,
-        displayKey: displayKey,
-        bills: [],
-        totalAmount: 0,
-        billCount: 0
-      });
-    }
-    
-    const group = groups.get(key);
-    group.bills.push(bill);
-    group.totalAmount += bill.total;
-    group.billCount += 1;
-  });
-  
-  return Array.from(groups.values()).sort((a, b) => {
-    if (period === 'day') return b.periodKey.localeCompare(a.periodKey);
-    if (period === 'month') return b.periodKey.localeCompare(a.periodKey);
-    if (period === 'year') return b.periodKey.localeCompare(a.periodKey);
-    if (period === 'week') return b.periodKey.localeCompare(a.periodKey);
-    return 0;
-  });
-}
-
 const PurchaseHistory = () => {
   const [purchases, setPurchases] = useState([]);
   const [summary, setSummary] = useState(null);
   const [showSummary, setShowSummary] = useState(false);
   const [expandedBill, setExpandedBill] = useState(null);
   const [suppliers, setSuppliers] = useState([]);
-  const [timeGrouping, setTimeGrouping] = useState('month');
   const [filters, setFilters] = useState({
     supplier: '',
     status: '',
@@ -163,7 +121,6 @@ const PurchaseHistory = () => {
   }, [fetchSummary]);
 
   const bills = useMemo(() => groupPurchasesIntoBills(purchases), [purchases]);
-  const groupedBills = useMemo(() => groupBillsByTimePeriod(bills, timeGrouping), [bills, timeGrouping]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -189,13 +146,22 @@ const PurchaseHistory = () => {
     return `₹${Number(amount).toFixed(2)}`;
   };
 
+  const formatDate = (dateStr) => {
+    if (!dateStr) return 'N/A';
+    return new Date(dateStr).toLocaleDateString('en-IN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  };
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
 
   return (
     <div className="purchase-history-container">
-      <h2>Purchase history</h2>
+      <h2>Purchase History</h2>
       
       <div className="purchase-summary-toggle">
         <button 
@@ -272,151 +238,179 @@ const PurchaseHistory = () => {
             <button onClick={clearFilters} className="clear-filters-btn">Clear</button>
           </div>
         </div>
-
-        <div className="time-grouping-tabs">
-          <button 
-            className={timeGrouping === 'day' ? 'active' : ''} 
-            onClick={() => setTimeGrouping('day')}
-          >
-            By Day
-          </button>
-          <button 
-            className={timeGrouping === 'week' ? 'active' : ''} 
-            onClick={() => setTimeGrouping('week')}
-          >
-            By Week
-          </button>
-          <button 
-            className={timeGrouping === 'month' ? 'active' : ''} 
-            onClick={() => setTimeGrouping('month')}
-          >
-            By Month
-          </button>
-          <button 
-            className={timeGrouping === 'year' ? 'active' : ''} 
-            onClick={() => setTimeGrouping('year')}
-          >
-            By Year
-          </button>
-        </div>
       </div>
 
-      {groupedBills.length === 0 ? (
+      {bills.length === 0 ? (
         <div className="no-data">No purchases found</div>
       ) : (
-        <div className="grouped-bills-container">
-          {groupedBills.map((group) => (
-            <div key={group.periodKey} className="time-period-group">
-              <div className="time-period-header">
-                <h3>{group.displayKey}</h3>
-                <div className="time-period-stats">
-                  <span className="bill-count">{group.billCount} bill{group.billCount !== 1 ? 's' : ''}</span>
-                  <span className="period-total">{formatCurrency(group.totalAmount)}</span>
+        <div className="bills-list">
+          {bills.map((bill) => (
+            <div key={bill.key} className="purchase-bill-wrapper">
+              <div 
+                className={`purchase-bill-card ${expandedBill === bill.key ? 'expanded' : ''} ${bill.payment_status === 'DUE' ? 'due-bill' : 'paid-bill'}`}
+                onClick={() => toggleBillExpand(bill.key)}
+              >
+                <div className="purchase-bill-card-head">
+                  <div className="bill-info">
+                    <strong className="supplier-name">{bill.supplier_name}</strong>
+                    {bill.supplier_bill_no && (
+                      <span className="supplier-bill-no"> · Bill: {bill.supplier_bill_no}</span>
+                    )}
+                  </div>
+                  <div className="purchase-bill-meta">
+                    <span className="purchase-date">{formatDate(bill.purchase_date)}</span>
+                    <span className={`status-badge ${bill.payment_status === 'PAID' ? 'status-paid' : 'status-due'}`}>
+                      {bill.payment_status || 'Pending'}
+                    </span>
+                    {bill.payment_status === 'PAID' && bill.payment_date && (
+                      <span className="payment-date">Paid: {formatDate(bill.payment_date)}</span>
+                    )}
+                    <span className="bill-total">{formatCurrency(bill.total)}</span>
+                    <span className="expand-icon">{expandedBill === bill.key ? '▼' : '▶'}</span>
+                  </div>
+                </div>
+                
+                <div className="bill-summary">
+                  <div className="summary-row">
+                    <span>{bill.lines.length} item{bill.lines.length !== 1 ? 's' : ''}</span>
+                    {bill.discount_percent > 0 && (
+                      <span className="discount-badge">Discount: {bill.discount_percent}% (-{formatCurrency(bill.discount_amount)})</span>
+                    )}
+                    {bill.gst_percent > 0 && (
+                      <span className="gst-badge">GST: {bill.gst_percent}% (+{formatCurrency(bill.gst_amount)})</span>
+                    )}
+                    {bill.other_charges > 0 && (
+                      <span className="other-badge">Other: +{formatCurrency(bill.other_charges)}</span>
+                    )}
+                  </div>
+                  {bill.payment_status === 'PAID' && bill.paid_by && (
+                    <div className="payment-info">Paid by: {bill.paid_by} {bill.paid_to ? `(to: ${bill.paid_to})` : ''}</div>
+                  )}
+                  {bill.payment_status === 'DUE' && bill.purchased_by && (
+                    <div className="payment-info">Purchased by: {bill.purchased_by}</div>
+                  )}
                 </div>
               </div>
               
-              <div className="bills-list">
-                {group.bills.map((bill) => (
-                  <div key={bill.key} className="purchase-bill-wrapper">
-                    <div 
-                      className={`purchase-bill-card ${expandedBill === bill.key ? 'expanded' : ''}`}
-                      onClick={() => toggleBillExpand(bill.key)}
-                    >
-                      <div className="purchase-bill-card-head">
-                        <div className="bill-info">
-                          <strong className="supplier-name">{bill.supplier_name}</strong>
-                          {bill.supplier_bill_no && (
-                            <span className="supplier-bill-no"> · Bill: {bill.supplier_bill_no}</span>
-                          )}
-                        </div>
-                        <div className="purchase-bill-meta">
-                          <span className="purchase-date">{bill.purchase_date}</span>
-                          <span className={`status-badge ${bill.payment_status === 'PAID' ? 'status-paid' : 'status-due'}`}>
-                            {bill.payment_status}
-                          </span>
-                          <span className="bill-total">{formatCurrency(bill.total)}</span>
-                          <span className="expand-icon">{expandedBill === bill.key ? '▼' : '▶'}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="bill-summary">
-                        {bill.lines.slice(0, 2).map((line, idx) => (
-                          <div key={idx} className="summary-line">
-                            <span>{line.products ? `${line.products.brand_name} (${line.product_code})` : line.product_code}</span>
-                            <span>{line.quantity} × {formatCurrency(line.cost_price)}</span>
-                          </div>
-                        ))}
-                        {bill.lines.length > 2 && (
-                          <div className="more-items">+ {bill.lines.length - 2} more item(s)</div>
-                        )}
-                      </div>
+              {expandedBill === bill.key && (
+                <div className="bill-details-expanded">
+                  <div className="expanded-header">
+                    <h4>Bill Details</h4>
+                    <div className="expanded-actions">
+                      {bill.batch_id != null && (
+                        <Link 
+                          className="edit-bill-link" 
+                          to={`/record-purchase?editBatch=${bill.batch_id}`}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Edit Bill
+                        </Link>
+                      )}
+                      {bill.bill_attachment && (
+                        <a
+                          className="view-attachment-link"
+                          href={resolveUploadedFileUrl(bill.bill_attachment)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          View Attachment
+                        </a>
+                      )}
                     </div>
-                    
-                    {expandedBill === bill.key && (
-                      <div className="bill-details-expanded">
-                        <div className="expanded-header">
-                          <h4>Bill Details</h4>
-                          <div className="expanded-actions">
-                            {bill.batch_id != null && (
-                              <Link 
-                                className="edit-bill-link" 
-                                to={`/record-purchase?editBatch=${bill.batch_id}`}
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                Edit Bill
-                              </Link>
-                            )}
-                            {bill.bill_attachment && (
-                              <a
-                                className="view-attachment-link"
-                                href={resolveUploadedFileUrl(bill.bill_attachment)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                View Attachment
-                              </a>
-                            )}
-                          </div>
+                  </div>
+                  
+                  <div className="bill-info-section">
+                    <div className="info-row">
+                      <span className="info-label">Supplier Bill No:</span>
+                      <span className="info-value">{bill.supplier_bill_no || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Purchase Date:</span>
+                      <span className="info-value">{formatDate(bill.purchase_date)}</span>
+                    </div>
+                    {bill.payment_status === 'PAID' && (
+                      <>
+                        <div className="info-row">
+                          <span className="info-label">Paid Date:</span>
+                          <span className="info-value">{formatDate(bill.payment_date)}</span>
                         </div>
-                        
-                        <table className="purchase-lines-table">
-                          <thead>
-                            <tr>
-                              <th>Product</th>
-                              <th>Quantity</th>
-                              <th>Cost Price</th>
-                              <th>Selling Price</th>
-                              <th>Line Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {bill.lines.map((line) => (
-                              <tr key={line.id}>
-                                <td>
-                                  {line.products
-                                    ? `${line.products.brand_name} - ${line.products.article_number || ''} (${line.product_code})`
-                                    : line.product_code}
-                                </td>
-                                <td>{line.quantity}</td>
-                                <td>{formatCurrency(line.cost_price)}</td>
-                                <td>{line.sell_price ? formatCurrency(line.sell_price) : '-'}</td>
-                                <td className="line-total">{formatCurrency(line.total_amount)}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                          <tfoot>
-                            <tr>
-                              <td colSpan="4" className="total-label">Bill Total:</td>
-                              <td className="bill-grand-total">{formatCurrency(bill.total)}</td>
-                            </tr>
-                          </tfoot>
-                        </table>
+                        <div className="info-row">
+                          <span className="info-label">Paid By:</span>
+                          <span className="info-value">{bill.paid_by}</span>
+                        </div>
+                        {bill.paid_to && (
+                          <div className="info-row">
+                            <span className="info-label">Paid To:</span>
+                            <span className="info-value">{bill.paid_to}</span>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {bill.payment_status === 'DUE' && bill.purchased_by && (
+                      <div className="info-row">
+                        <span className="info-label">Purchased By:</span>
+                        <span className="info-value">{bill.purchased_by}</span>
                       </div>
                     )}
                   </div>
-                ))}
-              </div>
+                  
+                  <table className="purchase-lines-table">
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th className="num">Quantity</th>
+                        <th className="num">Cost Price</th>
+                        <th className="num">Selling Price</th>
+                        <th className="num">Line Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {bill.lines.map((line) => (
+                        <tr key={line.id}>
+                          <td>
+                            {line.products
+                              ? `${line.products.brand_name} - ${line.products.article_number || ''} (${line.product_code})`
+                              : line.product_code}
+                          </td>
+                          <td className="num">{line.quantity}</td>
+                          <td className="num">{formatCurrency(line.cost_price)}</td>
+                          <td className="num">{line.sell_price ? formatCurrency(line.sell_price) : '-'}</td>
+                          <td className="num line-total">{formatCurrency(line.cost_price * line.quantity)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                    <tfoot>
+                      <tr className="calculation-row">
+                        <td colSpan="4" className="calculation-label">Subtotal:</td>
+                        <td className="calculation-value num">{formatCurrency(bill.subtotal)}</td>
+                      </tr>
+                      {bill.discount_percent > 0 && (
+                        <tr className="calculation-row discount">
+                          <td colSpan="4" className="calculation-label">Discount ({bill.discount_percent}%):</td>
+                          <td className="calculation-value num">-{formatCurrency(bill.discount_amount)}</td>
+                        </tr>
+                      )}
+                      {bill.gst_percent > 0 && (
+                        <tr className="calculation-row gst">
+                          <td colSpan="4" className="calculation-label">GST ({bill.gst_percent}%):</td>
+                          <td className="calculation-value num">+{formatCurrency(bill.gst_amount)}</td>
+                        </tr>
+                      )}
+                      {bill.other_charges > 0 && (
+                        <tr className="calculation-row other">
+                          <td colSpan="4" className="calculation-label">Other Charges:</td>
+                          <td className="calculation-value num">+{formatCurrency(bill.other_charges)}</td>
+                        </tr>
+                      )}
+                      <tr className="total-row">
+                        <td colSpan="4" className="total-label">GRAND TOTAL:</td>
+                        <td className="bill-grand-total num">{formatCurrency(bill.total)}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              )}
             </div>
           ))}
         </div>

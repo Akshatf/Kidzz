@@ -1,7 +1,7 @@
-import React from 'react';
-import { SHOP } from '../../config/shop';
-import { formatBillRef } from '../../utils/billRef';
-import './Bill.css';
+import React from "react";
+import { SHOP } from "../../config/shop";
+import { formatBillRef } from "../../utils/billRef";
+import "./Bill.css";
 
 const Bill = ({ billData, onClose }) => {
   const handlePrint = () => {
@@ -9,13 +9,17 @@ const Bill = ({ billData, onClose }) => {
   };
 
   const billRef = formatBillRef(billData.sale_date, billData.id);
-  const dateStr = new Date(`${billData.sale_date}T12:00:00`).toLocaleDateString('en-IN', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
+  const [year, month, day] = billData.sale_date.split("-");
+
+  const dateStr = new Date(year, month - 1, day).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
   });
 
-  const discountAmt = Number(billData.discount_amount ?? billData.discount ?? 0);
+  const discountAmt = Number(
+    billData.discount_amount ?? billData.discount ?? 0,
+  );
   const discountPct = Number(billData.discount_percentage ?? 0);
   const showDiscount = discountAmt > 0.0001 || discountPct > 0.0001;
 
@@ -58,8 +62,12 @@ const Bill = ({ billData, onClose }) => {
           ) : null}
           <p>
             <span className="label">Payment Mode</span>
-            <span className={billData.payment_mode === 'cash' ? 'cash-mode' : 'online-mode'}>
-              {billData.payment_mode === 'cash' ? '💰 Cash' : '💳 Online'}
+            <span
+              className={
+                billData.payment_mode === "cash" ? "cash-mode" : "online-mode"
+              }
+            >
+              {billData.payment_mode === "cash" ? "Cash" : "Online"}
             </span>
           </p>
         </section>
@@ -93,7 +101,12 @@ const Bill = ({ billData, onClose }) => {
           {showDiscount ? (
             <div className="total-row bill-discount-print">
               <span>Discount ({billData.discount_percentage || 0}%)</span>
-              <span>−₹{Number(billData.discount_amount ?? billData.discount ?? 0).toFixed(2)}</span>
+              <span>
+                −₹
+                {Number(
+                  billData.discount_amount ?? billData.discount ?? 0,
+                ).toFixed(2)}
+              </span>
             </div>
           ) : null}
           <div className="total-row final">

@@ -151,18 +151,18 @@ const AdminDashboard = ({ currentUser }) => {
           <strong>{money(currentDaySales?.total_revenue || 0)}</strong>
           <small>{currentDaySales?.total_sales || 0} bills</small>
         </div>
-        <div className="admin-card">
+        {/* <div className="admin-card">
           <span>Total sales amount</span>
           <strong>{money(salesReport.total_revenue)}</strong>
-        </div>
-        <div className="admin-card">
+        </div> */}
+        {/* <div className="admin-card">
           <span>Total bills</span>
           <strong>{salesReport.total_sales}</strong>
-        </div>
-        <div className="admin-card">
+        </div> */}
+        {/* <div className="admin-card">
           <span>Total stock qty</span>
           <strong>{products.reduce((sum, p) => sum + p.stock_qty, 0)}</strong>
-        </div>
+        </div> */}
       </div>
 
       <h3>Sales by salesman</h3>
